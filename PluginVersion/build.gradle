@@ -12,40 +12,4 @@ shadowJar {
     }
 }
 
-publisher {
-    apiKeys {
-        nightbloom(System.getenv("PLATFORM_KEY"))
-    }
-
-    setNightbloomID("sdlink")
-    setProjectVersion(project.version.toString())
-    setReleaseType(ReleaseType.ALPHA)
-    setChangelog(project.rootProject.file("changelog.md"))
-    setDisplayName("[Paper 1.19.4 - 1.21.4] Simple Discord Link Paper - ${project.version}")
-    setGameVersions("1.19.4", "1.20", "1.20.1", "1.20.2", "1.20.3", "1.20.4", "1.21", "1.21.1", "1.21.3", "1.21.4")
-    setLoaders("paper")
-    setArtifact(shadowJar)
-
-    nightbloomDepends {
-        required("craterlib")
-    }
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            group "com.hypherionmc.sdlink"
-            artifactId project.archivesBaseName
-
-            artifact(shadowJar) {
-                builtBy shadowJar
-            }
-            artifact sourcesJar
-            artifact javadocJar
-        }
-    }
-
-    repositories {
-        maven orion.getPublishingMaven()
-    }
-}
+// TODO Publishing
